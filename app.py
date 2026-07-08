@@ -27,12 +27,40 @@ st.set_page_config(page_title="Fraud Shield", page_icon="🛡️", layout="wide"
 # ---------------------------------------------------------------------------
 st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Poppins', sans-serif;
+}
+
+.stApp {
+    background: linear-gradient(160deg, #f5f3ff 0%, #eef2ff 45%, #f0f9ff 100%);
+    background-attachment: fixed;
+}
+
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #2d1b69 0%, #764ba2 100%);
+}
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+section[data-testid="stSidebar"] .stRadio > div {
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.block-container {
+    padding-top: 2rem;
+}
+
 .main-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 2rem 2.5rem;
     border-radius: 16px;
     margin-bottom: 1.5rem;
     color: white;
+    box-shadow: 0 10px 30px rgba(118,75,162,0.25);
 }
 .main-header h1 {
     color: white;
@@ -44,10 +72,12 @@ st.markdown("""
     margin: 0.3rem 0 0 0;
 }
 .metric-card {
-    background: white;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 14px;
     padding: 1.2rem 1.5rem;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(118,75,162,0.12);
     text-align: center;
     transition: transform 0.2s ease;
 }
@@ -365,4 +395,3 @@ else:
             mime="application/pdf",
             use_container_width=True,
         )
-           
