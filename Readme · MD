@@ -1,0 +1,54 @@
+# Credit Card Fraud Detection — Interactive App
+
+This turns your notebook's model into an actual app: a form to enter a new
+transaction, a live prediction, and a dashboard that tracks everything
+you've checked in the session.
+
+## Why the old version wasn't interactive
+
+Step 9B in your notebook used Python's `input()` in a loop. That only works
+if you run the file as a script from a terminal — it does nothing useful in
+a Colab cell, and even when run correctly it has no UI, no history, and
+nothing to look at. It also never saved the trained model, so nothing
+persisted outside that one Colab session.
+
+## Setup (3 steps)
+
+**1. Train + export the model**
+Open `credit_fraud_updated.ipynb` (your notebook with one new cell added:
+"STEP 9C: SAVE MODEL FOR THE STREAMLIT APP"). Run the whole notebook top to
+bottom, including the new cell. It will download 5 files:
+
+- `fraud_model.pkl`
+- `scaler.pkl`
+- `encoders.pkl`
+- `feature_columns.pkl`
+- `categorical_cols.pkl`
+
+**2. Put everything in one folder**
+Move those 5 `.pkl` files into the same folder as `app.py` and
+`requirements.txt`.
+
+**3. Install and run**
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+It'll open at `http://localhost:8501`. Fill out the form, hit
+"Check Transaction," and switch to the Dashboard tab to see the running
+history, fraud rate, and a chart of fraud probability across everything
+you've checked.
+
+## Notes
+
+- The app makes predictions using the exact model you trained (Random
+  Forest or Logistic Regression, whichever your notebook picked) — nothing
+  is retrained or approximated.
+- History is per-session (resets when you restart the app). If you want it
+  to persist across restarts, the next step would be writing each
+  prediction to a small SQLite file or CSV instead of `st.session_state` —
+  say the word if you want that added.
+- If you get a "Missing model files" error, it means the `.pkl` files
+  aren't in the same folder as `app.py`, or you skipped the new notebook
+  cell.
